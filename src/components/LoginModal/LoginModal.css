@@ -1,0 +1,49 @@
+/* Additional styles specific to modals if needed, reusing ModalWithForm styles for general structure */
+.modal__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  line-height: 14px;
+  color: #2F71E5; /* Assuming standard blueish color for labels */
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+  width: 100%;
+}
+
+.modal__input:focus {
+  border-bottom-color: #000;
+}
+
+.modal__submit-button {
+  background-color: #2F71E5;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.modal__submit-button:hover {
+  opacity: 0.8;
+}
