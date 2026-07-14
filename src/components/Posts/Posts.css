@@ -1,0 +1,145 @@
+.posts-feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.post__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.post__header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post__avatar-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.post__avatar {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.post__header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.post__username {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0 0 0 0;
+}
+
+.post__game-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+.post__settings-button,
+.post__action-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.post__settings-button {
+  padding: 0;
+}
+
+.post__settings-button:hover,
+.post__action-button:hover {
+  opacity: 0.7;
+}
+
+.post__media-container {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+  background-color: #1a1a1a;
+}
+
+.post__media {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  margin-left: -8px; /* Offset the button padding */
+}
+
+.post__actions-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post__description {
+  padding: 4px 0 16px;
+}
+
+.post__description-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.post__description-more,
+.post__description-less {
+  color: #b0b0b0;
+  cursor: pointer;
+}
+
+.post__description-more:hover,
+.post__description-less:hover {
+  color: #ffffff;
+}
+
+.post__divider {
+  border: 0;
+  height: 1px;
+  background-color: #333;
+  margin: 16px 0 8px;
+  width: 100%;
+}

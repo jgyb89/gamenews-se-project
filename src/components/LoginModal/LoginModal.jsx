@@ -1,53 +1,142 @@
-import { useState } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./LoginModal.css";
+import { useState, useEffect } from "react";
+import "../Modal/Modal.css";
+import signInArtwork from "../../assets/sign-in-artwork.png";
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
-  const [email, setEmail] = useState("");
+const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errors, setErrors] = useState({
+    identifier: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const validateField = (name, value) => {
+    let error = "";
+    if (name === "identifier" && !value.trim())
+      error = "Username or Email is required";
+    if (name === "password" && !value) error = "Password is required";
+    return error;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "identifier") setIdentifier(value);
+    if (name === "password") setPassword(value);
+
+    const errorMsg = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: errorMsg }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    const identifierError = validateField("identifier", identifier);
+    const passwordError = validateField("password", password);
+
+    if (identifierError || passwordError) {
+      setErrors({
+        identifier: identifierError,
+        password: passwordError,
+      });
+      return;
+    }
+
+    onLogin({ identifier, password });
   };
 
+  if (!isOpen) return null;
+
   return (
-    <ModalWithForm
-      title="Sign in"
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-    >
-      <fieldset className="modal__fieldset">
-        <label className="modal__label">
-          Email
-          <input
-            type="email"
-            className="modal__input"
-            name="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label className="modal__label">
-          Password
-          <input
-            type="password"
-            className="modal__input"
-            name="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-      </fieldset>
-      <button type="submit" className="modal__submit-button">
-        Sign in
-      </button>
-    </ModalWithForm>
+    <div className="modal" onClick={handleOverlayClick}>
+      <div className="modal__container">
+        <button
+          className="modal__close-btn"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+        <div className="modal__content">
+          <div className="modal__form-section">
+            <h2 className="modal__title">Log in</h2>
+            <form className="modal__form" onSubmit={handleSubmit} noValidate>
+              <div className="modal__input-group">
+                <label className="modal__label" htmlFor="login-identifier">
+                  Username / Email *
+                </label>
+                <input
+                  id="login-identifier"
+                  type="text"
+                  name="identifier"
+                  className={`modal__input ${errors.identifier ? "modal__input_type_error" : ""}`}
+                  value={identifier}
+                  onChange={handleChange}
+                  placeholder="Enter username or email"
+                />
+                {errors.identifier && (
+                  <span className="modal__error">{errors.identifier}</span>
+                )}
+              </div>
+
+              <div className="modal__input-group">
+                <label className="modal__label" htmlFor="login-password">
+                  Password *
+                </label>
+                <input
+                  id="login-password"
+                  type="password"
+                  name="password"
+                  className={`modal__input ${errors.password ? "modal__input_type_error" : ""}`}
+                  value={password}
+                  onChange={handleChange}
+                  placeholder="Enter password"
+                />
+                {errors.password && (
+                  <span className="modal__error">{errors.password}</span>
+                )}
+              </div>
+
+              <button type="submit" className="modal__submit-btn">
+                Log in
+              </button>
+            </form>
+            <p className="modal__toggle-text">
+              Don't have an account?{" "}
+              <span className="modal__toggle-link" onClick={onSwitchToRegister}>
+                Sign up Here
+              </span>
+            </p>
+          </div>
+          <div className="modal__artwork-section">
+            <img
+              src={signInArtwork}
+              alt="Collage of gaming characters"
+              className="modal__artwork-image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,12 +1,18 @@
 .page {
   display: flex;
   background-color: #101010;
-  min-height: 100vh;
 }
 
 .page__content {
   flex: 1;
-  max-width: 1360px;
+
   padding: 32px 40px 0;
   margin: 0 auto;
+  margin-left: 258px; /* Matches the desktop sidebar max-width */
+}
+
+@media screen and (max-width: 1080px) {
+  .page__content {
+    margin-left: 113px; /* Matches the tablet sidebar max-width */
+  }
 }

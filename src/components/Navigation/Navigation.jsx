@@ -1,5 +1,5 @@
-const Navigation = () => {
-  return <nav>Navigation</nav>;
+const Navigation = ({ children }) => {
+  return <nav className="navigation">{children}</nav>;
 };
 
 export default Navigation;

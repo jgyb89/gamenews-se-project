@@ -1,0 +1,13 @@
+.main-content {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.main-content__posts {
+  flex: 3;
+}
+
+.main-content__right-sidebar {
+  flex: 1;
+}
