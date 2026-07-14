@@ -1,1 +1,1 @@
-export const MMO_API_BASE_URL = "https://www.mmobomb.com/api1";
+export const MMOBOMB_API_BASE_URL = "https://www.mmobomb.com/api1";
