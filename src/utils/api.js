@@ -1,4 +1,4 @@
-import { MMO_API_BASE_URL } from "./constants";
+import { MMOBOMB_API_BASE_URL } from "./constants";
 
 const checkResponse = (res) => {
   if (res.ok) {
@@ -8,6 +8,11 @@ const checkResponse = (res) => {
 };
 
 export const getLatestNews = () => {
-  return fetch(`${MMO_API_BASE_URL}/latestnews`)
+  return fetch(`${MMOBOMB_API_BASE_URL}/latestnews`)
+    .then(checkResponse);
+};
+
+export const getGiveaways = () => {
+  return fetch(`${MMOBOMB_API_BASE_URL}/giveaways`)
     .then(checkResponse);
 };
