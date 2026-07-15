@@ -38,7 +38,7 @@
 }
 
 .right-sidebar__link:hover .right-sidebar__item-title {
-  color: #108ee9;
+  color: #ec0057;
 }
 
 .right-sidebar__thumbnail-container {
@@ -63,7 +63,7 @@
 }
 
 .right-sidebar__item-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 16px;

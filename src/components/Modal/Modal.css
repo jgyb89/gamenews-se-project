@@ -9,13 +9,14 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 20px;
 }
 
 .modal__container {
   background-color: #101010;
   border-radius: 12px;
   width: 90%;
-  max-width: 1200px;
+  max-width: 1080px;
   min-height: 500px;
   position: relative;
   overflow: hidden;
@@ -25,14 +26,21 @@
 .modal__close-btn {
   position: absolute;
   top: 16px;
-  right: 16px;
+  left: 16px;
   background: none;
   border: none;
   font-size: 28px;
+  opacity: 0.8;
   cursor: pointer;
-  color: #333;
+  color: #fff;
+  background: #000;
+  border-radius: 50%;
   z-index: 10;
   line-height: 1;
+}
+
+.modal__close-btn:hover {
+  opacity: 1;
 }
 
 .modal__content {

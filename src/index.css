@@ -110,3 +110,82 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* --- LIGHT MODE OVERRIDES --- */
+.page.light-mode {
+  background-color: #E3E3E3 !important;
+}
+
+/* Font/Header/Icon colors */
+.page.light-mode h1,
+.page.light-mode h2,
+.page.light-mode h3,
+.page.light-mode h4,
+.page.light-mode h5,
+.page.light-mode h6,
+.page.light-mode p,
+.page.light-mode span:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode a:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode div:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode .modal__title,
+.page.light-mode .material-symbols-outlined:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode label:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *) {
+  color: #101010 !important;
+}
+
+/* Box elements that need contrast against #E3E3E3 */
+.page.light-mode .card,
+.page.light-mode .news-card,
+.page.light-mode .posts,
+.page.light-mode .right-sidebar,
+.page.light-mode .modal__content,
+.page.light-mode .post-input-wrapper {
+  background-color: #ffffff !important;
+}
+
+.page.light-mode .post-input-area,
+.page.light-mode .carousel-controls,
+.page.light-mode .header__arrow,
+.page.light-mode .header {
+  background-color: transparent !important;
+}
+
+/* Form field borders */
+.page.light-mode .modal__input,
+.page.light-mode .post-input-wrapper,
+.page.light-mode .post-input,
+.page.light-mode .search-input {
+  border: 1px solid #101010 !important;
+  background-color: transparent !important;
+  color: #101010 !important;
+}
+
+.page.light-mode .modal__input::placeholder,
+.page.light-mode .post-input::placeholder,
+.page.light-mode .search-input::placeholder {
+  color: #666666 !important;
+}
+
+/* Ensure mobile top and bottom border gradient */
+@media screen and (max-width: 768px) {
+  .header__top-bar,
+  .bottom-nav {
+    background: linear-gradient(180deg, #010102 0%, #0f012e 100%) !important;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .header__top-bar {
+    margin-top: -32px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px !important;
+  }
+}
+.header__top-bar *,
+.bottom-nav *,
+.bottom-nav {
+  color: #ffffff !important;
+}
+

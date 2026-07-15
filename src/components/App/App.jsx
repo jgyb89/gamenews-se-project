@@ -5,28 +5,29 @@ import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import NewsPage from "../NewsPage/NewsPage";
-
 import "./App.css";
+import "../../styles/AppLayout.mobile.css";
 import Main from "../Main/Main";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import { MMOBOMB_API_BASE_URL } from "../../utils/constants";
+import { getLatestNews, getGiveaways } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  const toggleTheme = () => setIsLightMode(!isLightMode);
 
   const [news, setNews] = useState([]);
   const [giveaways, setGiveaways] = useState([]);
   const [apiError, setApiError] = useState("");
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const res = await fetch(`${MMOBOMB_API_BASE_URL}/latestnews`);
-        if (!res.ok) throw new Error("Failed to fetch news");
-        const data = await res.json();
+    getLatestNews()
+      .then((data) => {
         setNews(data.slice(0, 9));
-      } catch (err) {
+      })
+      .catch((err) => {
         console.error("News fetch error, using mock data", err);
         setNews(Array.from({ length: 9 }, (_, i) => ({
           id: `news-${i}`,
@@ -36,16 +37,13 @@ function App() {
           article_url: "#"
         })));
         setApiError("Using mock data due to API error (CORS or network issue).");
-      }
-    };
+      });
 
-    const fetchGiveaways = async () => {
-      try {
-        const res = await fetch(`${MMOBOMB_API_BASE_URL}/giveaways`);
-        if (!res.ok) throw new Error("Failed to fetch giveaways");
-        const data = await res.json();
+    getGiveaways()
+      .then((data) => {
         setGiveaways(data.slice(0, 9));
-      } catch (err) {
+      })
+      .catch((err) => {
         console.error("Giveaways fetch error, using mock data", err);
         setGiveaways(Array.from({ length: 9 }, (_, i) => ({
           id: `giveaway-${i}`,
@@ -55,11 +53,7 @@ function App() {
           giveaway_url: "#"
         })));
         setApiError("Using mock data due to API error (CORS or network issue).");
-      }
-    };
-
-    fetchNews();
-    fetchGiveaways();
+      });
   }, []);
 
   const handleCloseModal = () => setActiveModal("");
@@ -67,8 +61,13 @@ function App() {
   const handleOpenRegister = () => setActiveModal("register");
 
   return (
-    <div className="page">
-      <Sidebar isLoggedIn={false} handleOpenModal={handleOpenLogin} />
+    <div className={`page ${isLightMode ? "light-mode" : ""}`}>
+      <Sidebar 
+        isLoggedIn={false} 
+        handleOpenModal={handleOpenLogin} 
+        isLightMode={isLightMode} 
+        toggleTheme={toggleTheme} 
+      />
       <div className="page__content">
         <Header />
         <RegisterModal

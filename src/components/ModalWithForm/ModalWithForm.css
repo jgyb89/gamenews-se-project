@@ -10,7 +10,9 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 0.3s, opacity 0.3s ease;
+  transition:
+    visibility 0s 0.3s,
+    opacity 0.3s ease;
   z-index: 1000;
 }
 
@@ -43,6 +45,7 @@
 .modal__close-icon {
   width: 40px;
   height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal__title {

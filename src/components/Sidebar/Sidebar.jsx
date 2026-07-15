@@ -14,7 +14,7 @@ const navItems = [
   { path: "/news", icon: "newspaper", title: "News" },
 ];
 
-const Sidebar = ({ isLoggedIn, handleOpenModal }) => {
+const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const handleToggle = () => setIsCollapsed(!isCollapsed);
@@ -43,6 +43,13 @@ const Sidebar = ({ isLoggedIn, handleOpenModal }) => {
       </nav>
 
       <div className="sidebar__bottom">
+        <button className="sidebar__collapse-button" onClick={toggleTheme} type="button">
+          <span className="material-symbols-outlined sidebar__icon">
+            {isLightMode ? 'dark_mode' : 'light_mode'}
+          </span>
+          {!isCollapsed && <span className="sidebar__text">{isLightMode ? 'Dark Mode' : 'Light Mode'}</span>}
+        </button>
+
         <button className="sidebar__collapse-button" onClick={handleToggle} type="button">
           <span className="material-symbols-outlined sidebar__icon">
             {isCollapsed ? 'keyboard_double_arrow_right' : 'keyboard_double_arrow_left'}
