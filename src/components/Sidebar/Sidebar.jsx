@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import desktopLogo from "../../images/gamenews-logo-white.svg";
@@ -16,15 +16,29 @@ const navItems = [
 
 const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleToggle = () => setIsCollapsed(!isCollapsed);
+
+  let currentLogo = desktopLogo;
+  if (windowWidth <= 768) {
+    currentLogo = desktopLogo;
+  } else if (windowWidth <= 1288 || isCollapsed) {
+    currentLogo = mobileLogo;
+  }
 
   return (
     <aside className={`sidebar ${isCollapsed ? 'sidebar--collapsed' : ''}`}>
       <Link to="/" className="sidebar__logo-link">
         <img
-          src={isCollapsed ? mobileLogo : desktopLogo}
-          alt={isCollapsed ? "GameNews Logo Mobile" : "GameNews Logo"}
+          src={currentLogo}
+          alt={currentLogo === mobileLogo ? "GameNews Logo Mobile" : "GameNews Logo"}
           className="sidebar__logo"
         />
       </Link>
