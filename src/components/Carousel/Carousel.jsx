@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import "./Carousel.css";
+import arrowLeft from "../../images/arrow-left.svg";
+import arrowRight from "../../images/arrow-right.svg";
 
 const Carousel = ({ title, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,18 +65,7 @@ const Carousel = ({ title, items }) => {
               aria-label="Previous"
               disabled={currentIndex === 0}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z"
-                  fill="white"
-                />
-              </svg>
+              <img src={arrowLeft} alt="Previous" className="carousel__arrow" />
             </button>
             <button
               className="carousel__button"
@@ -82,18 +73,7 @@ const Carousel = ({ title, items }) => {
               aria-label="Next"
               disabled={currentIndex >= items.length - visibleItems}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
-                  fill="white"
-                />
-              </svg>
+              <img src={arrowRight} alt="Next" className="carousel__arrow" />
             </button>
           </div>
         )}
