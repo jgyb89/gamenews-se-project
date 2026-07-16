@@ -113,7 +113,7 @@ code {
 
 /* --- LIGHT MODE OVERRIDES --- */
 .page.light-mode {
-  background-color: #E3E3E3 !important;
+  background-color: #e3e3e3 !important;
 }
 
 /* Font/Header/Icon colors */
@@ -124,12 +124,17 @@ code {
 .page.light-mode h5,
 .page.light-mode h6,
 .page.light-mode p,
-.page.light-mode span:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode
+  span:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
 .page.light-mode a:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
 .page.light-mode div:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
 .page.light-mode .modal__title,
-.page.light-mode .material-symbols-outlined:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
-.page.light-mode label:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *) {
+.page.light-mode
+  .material-symbols-outlined:not(.sidebar *):not(.bottom-nav *):not(
+    .header__top-bar *
+  ),
+.page.light-mode
+  label:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *) {
   color: #101010 !important;
 }
 
@@ -141,13 +146,6 @@ code {
 .page.light-mode .modal__content,
 .page.light-mode .post-input-wrapper {
   background-color: #ffffff !important;
-}
-
-.page.light-mode .post-input-area,
-.page.light-mode .carousel-controls,
-.page.light-mode .header__arrow,
-.page.light-mode .header {
-  background-color: transparent !important;
 }
 
 /* Form field borders */
@@ -171,16 +169,13 @@ code {
   .header__top-bar,
   .bottom-nav {
     background: linear-gradient(180deg, #010102 0%, #0f012e 100%) !important;
-    margin-left: -10px;
-    margin-right: -10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
   }
   .header__top-bar {
-    margin-top: -32px;
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-bottom: 20px !important;
   }
 }
 .header__top-bar *,
@@ -188,4 +183,3 @@ code {
 .bottom-nav {
   color: #ffffff !important;
 }
-

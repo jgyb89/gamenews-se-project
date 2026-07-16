@@ -29,14 +29,18 @@ function App() {
       })
       .catch((err) => {
         console.error("News fetch error, using mock data", err);
-        setNews(Array.from({ length: 9 }, (_, i) => ({
-          id: `news-${i}`,
-          title: `Mock News Title ${i + 1}`,
-          short_description: `This is a mock description for news ${i + 1}.`,
-          thumbnail: "https://via.placeholder.com/300x150",
-          article_url: "#"
-        })));
-        setApiError("Using mock data due to API error (CORS or network issue).");
+        setNews(
+          Array.from({ length: 9 }, (_, i) => ({
+            id: `news-${i}`,
+            title: `Mock News Title ${i + 1}`,
+            short_description: `This is a mock description for news ${i + 1}.`,
+            thumbnail: "https://via.placeholder.com/300x150",
+            article_url: "#",
+          })),
+        );
+        setApiError(
+          "Using mock data due to API error (CORS or network issue).",
+        );
       });
 
     getGiveaways()
@@ -45,14 +49,18 @@ function App() {
       })
       .catch((err) => {
         console.error("Giveaways fetch error, using mock data", err);
-        setGiveaways(Array.from({ length: 9 }, (_, i) => ({
-          id: `giveaway-${i}`,
-          title: `Mock Giveaway Title ${i + 1}`,
-          short_description: `This is a mock description for giveaway ${i + 1}.`,
-          thumbnail: "https://via.placeholder.com/300x150",
-          giveaway_url: "#"
-        })));
-        setApiError("Using mock data due to API error (CORS or network issue).");
+        setGiveaways(
+          Array.from({ length: 9 }, (_, i) => ({
+            id: `giveaway-${i}`,
+            title: `Mock Giveaway Title ${i + 1}`,
+            short_description: `This is a mock description for giveaway ${i + 1}.`,
+            thumbnail: "https://via.placeholder.com/300x150",
+            giveaway_url: "#",
+          })),
+        );
+        setApiError(
+          "Using mock data due to API error (CORS or network issue).",
+        );
       });
   }, []);
 
@@ -62,11 +70,11 @@ function App() {
 
   return (
     <div className={`page ${isLightMode ? "light-mode" : ""}`}>
-      <Sidebar 
-        isLoggedIn={false} 
-        handleOpenModal={handleOpenLogin} 
-        isLightMode={isLightMode} 
-        toggleTheme={toggleTheme} 
+      <Sidebar
+        isLoggedIn={false}
+        handleOpenModal={handleOpenLogin}
+        isLightMode={isLightMode}
+        toggleTheme={toggleTheme}
       />
       <div className="page__content">
         <Header />
@@ -84,7 +92,10 @@ function App() {
         />
         <Navigation>
           <Routes>
-            <Route path="/" element={<Main newsData={news} apiError={apiError} />} />
+            <Route
+              path="/"
+              element={<Main newsData={news} apiError={apiError} />}
+            />
             <Route path="/register" />
             <Route
               path="/news"

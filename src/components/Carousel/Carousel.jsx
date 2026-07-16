@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import "./Carousel.css";
 
@@ -26,15 +26,14 @@ const Carousel = ({ title, items }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Ensure currentIndex adjusts if resizing makes it out of bounds
-  useEffect(() => {
-    if (items.length > 0 && currentIndex > items.length - visibleItems) {
-      setCurrentIndex(Math.max(0, items.length - visibleItems));
-    }
-  }, [visibleItems, items.length, currentIndex]);
+  // Ensure currentIndex adjusts if resizing makes it out of bounds during render
+  const maxIndex = Math.max(0, items.length - visibleItems);
+  if (items.length > 0 && currentIndex > maxIndex) {
+    setCurrentIndex(maxIndex);
+  }
 
   const handleNext = () => {
-    if (currentIndex < items.length - visibleItems) {
+    if (currentIndex < maxIndex) {
       setCurrentIndex((prev) => prev + 1);
     }
   };

@@ -8,6 +8,7 @@
   /* Reset layout to full width */
   .page__content {
     margin-left: 0 !important;
+    padding-top: 80px !important; /* Space for fixed top bar */
     padding-bottom: 80px !important; /* Space for bottom nav */
     padding-left: 10px !important; /* Mobile friendly padding */
     padding-right: 10px !important;
@@ -18,7 +19,11 @@
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
   }
 
   .header__top-bar-icons {

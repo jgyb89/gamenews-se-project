@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 import "../Modal/Modal.css";
 import signInArtwork from "../../assets/sign-in-artwork.png";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
+  const overlayRef = useRef(null);
+
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,6 +13,43 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
     identifier: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (!isOpen || !overlayRef.current) return;
+
+    let ctx = gsap.context(() => {
+      const c1 = "#EC0057";
+      const c2 = "#EA53ED";
+      const c3 = "#323BED";
+      const c4 = "#6253ED";
+
+      const tlBg = gsap.timeline({ repeat: -1, yoyo: true });
+
+      tlBg
+        .to(overlayRef.current, {
+          backgroundColor: c2,
+          duration: 4,
+          ease: "power1.inOut",
+        })
+        .to(overlayRef.current, {
+          backgroundColor: c3,
+          duration: 4,
+          ease: "power1.inOut",
+        })
+        .to(overlayRef.current, {
+          backgroundColor: c4,
+          duration: 4,
+          ease: "power1.inOut",
+        })
+        .to(overlayRef.current, {
+          backgroundColor: c1,
+          duration: 4,
+          ease: "power1.inOut",
+        });
+    }, overlayRef);
+
+    return () => ctx.revert();
+  }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -67,7 +107,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal" onClick={handleOverlayClick}>
+    <div className="modal" ref={overlayRef} onClick={handleOverlayClick}>
       <div className="modal__container">
         <button
           className="modal__close-btn"
