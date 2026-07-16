@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 
 import gameNewsLogo from "../../images/gamenews-logo-white.svg";
+import arrowLeft from "../../images/arrow-left.svg";
+import arrowRight from "../../images/arrow-right.svg";
 
 import godot from "../../images/gallery/godot-game-engine.png";
 import globalGameJam from "../../images/gallery/global-game-jam.png";
@@ -104,19 +106,7 @@ function Header() {
             onClick={handlePrev}
             aria-label="Previous category"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ transform: "rotate(180deg)" }}
-            >
-              <path
-                d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
-                fill="white"
-              />
-            </svg>
+            <img src={arrowLeft} alt="Previous category" />
           </button>
         )}
 
@@ -140,18 +130,7 @@ function Header() {
             onClick={handleNext}
             aria-label="Next category"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
-                fill="white"
-              />
-            </svg>
+            <img src={arrowRight} alt="Next category" />
           </button>
         )}
       </div>
