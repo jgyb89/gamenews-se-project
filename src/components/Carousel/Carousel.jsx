@@ -7,14 +7,14 @@ import arrowRight from "../../images/arrow-right.svg";
 const Carousel = ({ title, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(3);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1080);
 
   useEffect(() => {
     const handleResize = () => {
       const currentWidth = window.innerWidth;
-      setIsMobile(currentWidth <= 768);
+      setIsMobile(currentWidth <= 1080);
 
-      if (currentWidth <= 1424 && currentWidth > 768) {
+      if (currentWidth <= 1424 && currentWidth > 1080) {
         setVisibleItems(2);
       } else {
         setVisibleItems(3);

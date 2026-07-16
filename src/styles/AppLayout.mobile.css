@@ -1,10 +1,15 @@
-@media screen and (max-width: 768px) {
-  /* Hide sidebars on mobile */
-  .sidebar,
+@media screen and (max-width: 1080px) {
+  /* Hide Newsfeed sidebars */
   .main-content__right-sidebar {
     display: none !important;
   }
+}
 
+@media screen and (max-width: 768px) {
+  /* Hides Sidebar on Mobile */
+  .sidebar {
+    display: none;
+  }
   /* Reset layout to full width */
   .page__content {
     margin-left: 0 !important;

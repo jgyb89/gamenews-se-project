@@ -106,7 +106,7 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1288px) {
   .sidebar {
     max-width: 113px;
   }

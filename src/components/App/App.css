@@ -11,7 +11,7 @@
   margin-left: 258px; /* Matches the desktop sidebar max-width */
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1288px) {
   .page__content {
     margin-left: 113px; /* Matches the tablet sidebar max-width */
   }
