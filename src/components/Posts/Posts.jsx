@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Posts.css";
 // We can use a mock avatar and placeholder image to match the mockup
-import bethesdaAvatar from "../../assets/gamenews-logo-white.svg"; 
+import bethesdaAvatar from "../../images/gamenews-logo-white.svg"; 
 
 const mockPosts = [
   {

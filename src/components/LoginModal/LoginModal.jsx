@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import "../Modal/Modal.css";
-import signInArtwork from "../../assets/sign-in-artwork.png";
+import signInArtwork from "../../images/sign-in-artwork.png";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
   const overlayRef = useRef(null);
@@ -132,6 +132,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
                   value={identifier}
                   onChange={handleChange}
                   placeholder="Enter username or email"
+                  required
                 />
                 {errors.identifier && (
                   <span className="modal__error">{errors.identifier}</span>
@@ -150,6 +151,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister, onLogin }) => {
                   value={password}
                   onChange={handleChange}
                   placeholder="Enter password"
+                  required
                 />
                 {errors.password && (
                   <span className="modal__error">{errors.password}</span>

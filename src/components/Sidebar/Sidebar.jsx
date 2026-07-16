@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import desktopLogo from "../../assets/gamenews-logo-white.svg";
-import mobileLogo from "../../assets/GameNews-mobile-logo.svg";
+import desktopLogo from "../../images/gamenews-logo-white.svg";
+import mobileLogo from "../../images/GameNews-mobile-logo.svg";
 
 const navItems = [
   { path: "/search", icon: "search", title: "Search" },

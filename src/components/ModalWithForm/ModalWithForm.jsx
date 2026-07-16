@@ -1,6 +1,6 @@
 import { useModalClose } from "../../hooks/useModalClose";
 import "./ModalWithForm.css";
-import closeIcon from "../../assets/close-icon.svg";
+import closeIcon from "../../images/close-icon.svg";
 
 const ModalWithForm = ({
   children,

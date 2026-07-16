@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 
-import gameNewsLogo from "../../assets/gamenews-logo-white.svg";
+import gameNewsLogo from "../../images/gamenews-logo-white.svg";
 
-import godot from "../../assets/gallery/godot-game-engine.png";
-import globalGameJam from "../../assets/gallery/global-game-jam.png";
-import css2 from "../../assets/gallery/major-css2-competition.png";
-import valve from "../../assets/gallery/valve.png";
-import cssgo from "../../assets/gallery/cssgo.png";
-import unreal from "../../assets/gallery/unreal-engine.png";
-import valorant from "../../assets/gallery/valorant.png";
+import godot from "../../images/gallery/godot-game-engine.png";
+import globalGameJam from "../../images/gallery/global-game-jam.png";
+import css2 from "../../images/gallery/major-css2-competition.png";
+import valve from "../../images/gallery/valve.png";
+import cssgo from "../../images/gallery/cssgo.png";
+import unreal from "../../images/gallery/unreal-engine.png";
+import valorant from "../../images/gallery/valorant.png";
 
 const categoryImages = [
   { id: 1, src: godot, alt: "Godot Game Engine" },
