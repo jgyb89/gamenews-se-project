@@ -14,3 +14,10 @@
 .main-content__right-sidebar {
   flex: 1;
 }
+
+/* --- TABLET/MOBILE STYLES --- */
+@media screen and (max-width: 1080px) {
+  .main-content__right-sidebar {
+    display: none !important;
+  }
+}

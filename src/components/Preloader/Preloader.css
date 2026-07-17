@@ -21,11 +21,11 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  animation: spin .75s infinite linear;
+  animation: spin 0.75s infinite linear;
 }
 
 .preloader__text {
-  margin-top: 80px; /* Push below the absolute circle */
+  margin-top: 80px;
   font-size: 16px;
   color: #888;
 }

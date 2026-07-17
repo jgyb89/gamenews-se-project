@@ -101,19 +101,19 @@
   }
 
   .carousel__window {
-    overflow: visible; /* Prevent vertical clipping */
+    overflow: visible;
   }
 
   .carousel__track {
     flex-direction: column;
-    gap: 32px; /* Space between vertically stacked cards */
-    transform: none !important; /* Force disable horizontal sliding */
+    gap: 32px;
+    transform: none !important;
   }
 
   .carousel__item {
     flex: 0 0 auto;
     width: 100%;
-    padding: 0; /* Remove side paddings used for the horizontal layout */
-    border-right: none; /* Remove horizontal dividers */
+    padding: 0;
+    border-right: none;
   }
 }

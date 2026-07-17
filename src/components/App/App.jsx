@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import NewsPage from "../NewsPage/NewsPage";
 import "./App.css";
-import "../../styles/AppLayout.mobile.css";
 import Main from "../Main/Main";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";

@@ -164,22 +164,8 @@ code {
   color: #666666 !important;
 }
 
-/* Ensure mobile top and bottom border gradient */
-@media screen and (max-width: 768px) {
-  .header__top-bar,
-  .bottom-nav {
-    background: linear-gradient(180deg, #010102 0%, #0f012e 100%) !important;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
-  }
-  .header__top-bar {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-}
-.header__top-bar *,
-.bottom-nav *,
-.bottom-nav {
-  color: #ffffff !important;
+
+/* Global Mobile Utility */
+.mobile-only {
+  display: none;
 }

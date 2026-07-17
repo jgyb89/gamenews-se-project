@@ -89,7 +89,7 @@
 .modal__label {
   font-size: 14px;
   font-weight: 500;
-  color: #ccc; /* Standardized to dark mode from LoginModal */
+  color: #ccc;
 }
 
 .modal__input {
@@ -104,7 +104,7 @@
 }
 
 .modal__input:focus {
-  border-color: #ec0057; /* Standardized to brand accent */
+  border-color: #ec0057;
 }
 
 .modal__input_type_error {
