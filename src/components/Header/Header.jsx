@@ -164,13 +164,18 @@ function Header({ isLoggedIn, handleOpenModal }) {
             <span className="bottom-nav__text">Profile</span>
           </NavLink>
         ) : (
-          <button 
-            type="button" 
-            className="bottom-nav__link" 
+          <button
+            type="button"
+            className="bottom-nav__link"
             onClick={handleOpenModal}
-            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+            }}
           >
-            <span className="material-symbols-outlined bottom-nav__icon">
+            <span className="material-symbols-outlined bottom-nav__icon bottom-nav__icon-login">
               login
             </span>
             <span className="bottom-nav__text">Login</span>

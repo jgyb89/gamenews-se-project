@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
-import Navigation from "../Navigation/Navigation";
+
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import NewsPage from "../NewsPage/NewsPage";
@@ -89,7 +89,7 @@ function App() {
           onSwitchToRegister={handleOpenRegister}
           onLogin={console.log}
         />
-        <Navigation>
+
           <Routes>
             <Route
               path="/"
@@ -107,7 +107,7 @@ function App() {
               }
             />
           </Routes>
-        </Navigation>
+
         <Footer />
       </div>
     </div>
