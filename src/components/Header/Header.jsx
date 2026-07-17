@@ -32,7 +32,7 @@ const bottomNavItems = [
   { path: "/news", icon: "newspaper", title: "News" },
 ];
 
-function Header() {
+function Header({ isLoggedIn, handleOpenModal }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(4);
 
@@ -151,6 +151,31 @@ function Header() {
             <span className="bottom-nav__text">{item.title}</span>
           </NavLink>
         ))}
+        {isLoggedIn ? (
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              `bottom-nav__link ${isActive ? "active" : ""}`
+            }
+          >
+            <span className="material-symbols-outlined bottom-nav__icon">
+              account_circle
+            </span>
+            <span className="bottom-nav__text">Profile</span>
+          </NavLink>
+        ) : (
+          <button 
+            type="button" 
+            className="bottom-nav__link" 
+            onClick={handleOpenModal}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+          >
+            <span className="material-symbols-outlined bottom-nav__icon">
+              login
+            </span>
+            <span className="bottom-nav__text">Login</span>
+          </button>
+        )}
       </nav>
     </header>
   );

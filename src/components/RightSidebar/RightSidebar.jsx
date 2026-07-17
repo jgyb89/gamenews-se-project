@@ -16,11 +16,27 @@ const RightSidebar = ({ newsData, isLoading, apiError }) => {
         <ul className="right-sidebar__list">
           {topNews.map((news) => (
             <li key={news.id} className="right-sidebar__item">
-              <a href={news.article_url} target="_blank" rel="noreferrer" className="right-sidebar__link">
+              <a
+                href={news.article_url}
+                target="_blank"
+                rel="noreferrer"
+                className="right-sidebar__link"
+              >
                 <div className="right-sidebar__thumbnail-container">
-                  <img src={news.thumbnail} alt={news.title} className="right-sidebar__thumbnail" />
+                  <img
+                    src={news.thumbnail}
+                    alt={news.title}
+                    className="right-sidebar__thumbnail"
+                  />
                 </div>
-                {news.date && <span className="right-sidebar__date">{new Date(news.date).toLocaleDateString('en-US') !== 'Invalid Date' ? new Date(news.date).toLocaleDateString('en-US') : news.date}</span>}
+                {news.date && (
+                  <span className="right-sidebar__date">
+                    {new Date(news.date).toLocaleDateString("en-US") !==
+                    "Invalid Date"
+                      ? new Date(news.date).toLocaleDateString("en-US")
+                      : news.date}
+                  </span>
+                )}
                 <h3 className="right-sidebar__item-title">{news.title}</h3>
               </a>
             </li>

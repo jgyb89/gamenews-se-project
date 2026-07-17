@@ -76,7 +76,7 @@ function App() {
         toggleTheme={toggleTheme}
       />
       <div className="page__content">
-        <Header />
+        <Header isLoggedIn={false} handleOpenModal={handleOpenLogin} />
         <RegisterModal
           isOpen={activeModal === "register"}
           onClose={handleCloseModal}
