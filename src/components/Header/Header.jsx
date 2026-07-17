@@ -34,7 +34,7 @@ const bottomNavItems = [
 
 function Header({ isLoggedIn, handleOpenModal }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleItems, setVisibleItems] = useState(4);
+  const [visibleItems, setVisibleItems] = useState(5);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,7 +44,7 @@ function Header({ isLoggedIn, handleOpenModal }) {
       } else if (width <= 1024) {
         setVisibleItems(3);
       } else {
-        setVisibleItems(4);
+        setVisibleItems(5);
       }
     };
 

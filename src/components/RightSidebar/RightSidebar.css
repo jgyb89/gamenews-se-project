@@ -3,7 +3,7 @@
   background-color: #1a1a1a;
   border-radius: 8px;
   width: 100%;
-  max-width: 258px;
+  max-width: 313px;
   box-sizing: border-box;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .right-sidebar__thumbnail-container {
-  max-width: 213px;
+  max-width: 313px;
   max-height: 121px;
   margin-bottom: 8px;
   overflow: hidden;
