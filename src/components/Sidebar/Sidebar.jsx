@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import desktopLogo from "../../images/gamenews-logo-white.svg";
@@ -16,30 +16,21 @@ const navItems = [
 
 const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const handleToggle = () => setIsCollapsed(!isCollapsed);
 
-  let currentLogo = desktopLogo;
-  if (windowWidth <= 768) {
-    currentLogo = desktopLogo;
-  } else if (windowWidth <= 1288 || isCollapsed) {
-    currentLogo = mobileLogo;
-  }
-
   return (
-    <aside className={`sidebar ${isCollapsed ? 'sidebar--collapsed' : ''}`}>
+    <aside className={`sidebar ${isCollapsed ? "sidebar--collapsed" : ""}`}>
       <Link to="/" className="sidebar__logo-link">
         <img
-          src={currentLogo}
-          alt={currentLogo === mobileLogo ? "GameNews Logo Mobile" : "GameNews Logo"}
-          className="sidebar__logo"
+          src={desktopLogo}
+          alt="GameNews Logo"
+          className="sidebar__logo sidebar__logo--desktop"
+        />
+        <img
+          src={mobileLogo}
+          alt="GameNews Logo Mobile"
+          className="sidebar__logo sidebar__logo--mobile"
         />
       </Link>
 
@@ -48,8 +39,12 @@ const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
           {navItems.map((item) => (
             <li className="sidebar__item" key={item.path}>
               <NavLink to={item.path} className="sidebar__link">
-                <span className="material-symbols-outlined sidebar__icon">{item.icon}</span>
-                {!isCollapsed && <span className="sidebar__text">{item.title}</span>}
+                <span className="material-symbols-outlined sidebar__icon">
+                  {item.icon}
+                </span>
+                {!isCollapsed && (
+                  <span className="sidebar__text">{item.title}</span>
+                )}
               </NavLink>
             </li>
           ))}
@@ -57,16 +52,30 @@ const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
       </nav>
 
       <div className="sidebar__bottom">
-        <button className="sidebar__collapse-button" onClick={toggleTheme} type="button">
+        <button
+          className="sidebar__collapse-button"
+          onClick={toggleTheme}
+          type="button"
+        >
           <span className="material-symbols-outlined sidebar__icon">
-            {isLightMode ? 'dark_mode' : 'light_mode'}
+            {isLightMode ? "dark_mode" : "light_mode"}
           </span>
-          {!isCollapsed && <span className="sidebar__text">{isLightMode ? 'Dark Mode' : 'Light Mode'}</span>}
+          {!isCollapsed && (
+            <span className="sidebar__text">
+              {isLightMode ? "Dark Mode" : "Light Mode"}
+            </span>
+          )}
         </button>
 
-        <button className="sidebar__collapse-button" onClick={handleToggle} type="button">
+        <button
+          className="sidebar__collapse-button"
+          onClick={handleToggle}
+          type="button"
+        >
           <span className="material-symbols-outlined sidebar__icon">
-            {isCollapsed ? 'keyboard_double_arrow_right' : 'keyboard_double_arrow_left'}
+            {isCollapsed
+              ? "keyboard_double_arrow_right"
+              : "keyboard_double_arrow_left"}
           </span>
           {!isCollapsed && <span className="sidebar__text">Collapse</span>}
         </button>
@@ -74,13 +83,23 @@ const Sidebar = ({ isLoggedIn, handleOpenModal, isLightMode, toggleTheme }) => {
         <div className="sidebar__auth">
           {isLoggedIn ? (
             <Link to="/profile" className="sidebar__auth-link">
-              <span className="material-symbols-outlined sidebar__icon">account_circle</span>
+              <span className="material-symbols-outlined sidebar__icon">
+                account_circle
+              </span>
               {!isCollapsed && <span className="sidebar__text">Profile</span>}
             </Link>
           ) : (
-            <button className="sidebar__auth-button" onClick={handleOpenModal} type="button">
-              <span className="material-symbols-outlined sidebar__icon">login</span>
-              {!isCollapsed && <span className="sidebar__text">Sign Up/Login</span>}
+            <button
+              className="sidebar__auth-button"
+              onClick={handleOpenModal}
+              type="button"
+            >
+              <span className="material-symbols-outlined sidebar__icon">
+                login
+              </span>
+              {!isCollapsed && (
+                <span className="sidebar__text">Sign Up/Login</span>
+              )}
             </button>
           )}
         </div>

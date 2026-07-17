@@ -39,7 +39,25 @@
 }
 
 .sidebar__logo {
-  max-width: 100%;
+  width: 100%;
+}
+
+.sidebar__logo--desktop {
+  max-width: 200px;
+  display: block;
+}
+
+.sidebar__logo--mobile {
+  max-width: 50px;
+  display: none;
+}
+
+.sidebar.sidebar--collapsed .sidebar__logo--desktop {
+  display: none;
+}
+
+.sidebar.sidebar--collapsed .sidebar__logo--mobile {
+  display: block;
 }
 
 .sidebar__nav {
@@ -114,6 +132,14 @@
   .sidebar__logo-link {
     justify-content: center;
     padding: 0;
+  }
+
+  .sidebar__logo--desktop {
+    display: none;
+  }
+
+  .sidebar__logo--mobile {
+    display: block;
   }
 
   .sidebar__link,
