@@ -1,25 +1,52 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import NewsPage from "../NewsPage/NewsPage";
+import Profile from "../Profile/Profile";
 import "./App.css";
 import Main from "../Main/Main";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { getLatestNews, getGiveaways } from "../../utils/api";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [isLightMode, setIsLightMode] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleTheme = () => setIsLightMode(!isLightMode);
 
   const [news, setNews] = useState([]);
   const [giveaways, setGiveaways] = useState([]);
   const [apiError, setApiError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      return;
+    }
+
+    auth.checkToken(token)
+      .then((user) => {
+        setIsLoggedIn(true);
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.error("Token validation failed:", err);
+        localStorage.removeItem("jwt"); 
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+      });
+  }, []);
 
   useEffect(() => {
     getLatestNews()
@@ -67,16 +94,43 @@ function App() {
   const handleOpenLogin = () => setActiveModal("login");
   const handleOpenRegister = () => setActiveModal("register");
 
+  const handleLogin = (email, password) => {
+    auth.login(email, password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("jwt", data.token);
+          return auth.checkToken(data.token);
+        }
+      })
+      .then((user) => {
+        setIsLoggedIn(true);
+        setCurrentUser(user);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Login failed:", err);
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
+
   return (
-    <div className={`page ${isLightMode ? "light-mode" : ""}`}>
-      <Sidebar
-        isLoggedIn={false}
-        handleOpenModal={handleOpenLogin}
-        isLightMode={isLightMode}
-        toggleTheme={toggleTheme}
-      />
+    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+      <div className={`page ${isLightMode ? "light-mode" : ""}`}>
+        <Sidebar
+          isLoggedIn={isLoggedIn}
+          handleOpenModal={handleOpenLogin}
+          isLightMode={isLightMode}
+          toggleTheme={toggleTheme}
+          handleLogout={handleLogout}
+        />
       <div className="page__content">
-        <Header isLoggedIn={false} handleOpenModal={handleOpenLogin} />
+        <Header isLoggedIn={isLoggedIn} handleOpenModal={handleOpenLogin} handleLogout={handleLogout} />
         <RegisterModal
           isOpen={activeModal === "register"}
           onClose={handleCloseModal}
@@ -87,7 +141,7 @@ function App() {
           isOpen={activeModal === "login"}
           onClose={handleCloseModal}
           onSwitchToRegister={handleOpenRegister}
-          onLogin={console.log}
+          onLogin={handleLogin}
         />
 
           <Routes>
@@ -99,11 +153,21 @@ function App() {
             <Route
               path="/news"
               element={
-                <NewsPage
-                  news={news}
-                  giveaways={giveaways}
-                  apiError={apiError}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn} handleOpenLoginModal={handleOpenLogin}>
+                  <NewsPage
+                    news={news}
+                    giveaways={giveaways}
+                    apiError={apiError}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn} handleOpenLoginModal={handleOpenLogin}>
+                  <Profile currentUser={currentUser} handleLogout={handleLogout} />
+                </ProtectedRoute>
               }
             />
           </Routes>
@@ -111,6 +175,7 @@ function App() {
         <Footer />
       </div>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 

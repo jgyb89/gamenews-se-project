@@ -1,0 +1,14 @@
+# Google App Engine standard environment configuration for a static React/Vite app
+runtime: nodejs20
+
+# Handlers route incoming traffic to the appropriate static files
+handlers:
+  # Serve all static assets (CSS, JS, Images) from the dist folder
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+
+  # Catch-all route to serve index.html for React Router (SPA support)
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html

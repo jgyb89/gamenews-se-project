@@ -1,176 +1,210 @@
+/* ==========================================================================
+   Shared Authentication Modal Styles (Matching Desktop - Sign-up.jpg)
+   ========================================================================== */
+
 .modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(236, 0, 87, 1);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
 }
 
+/* Container MUST be a flex row with no padding so the artwork can touch the edges */
 .modal__container {
   background-color: #101010;
-  border-radius: 12px;
-  padding: 40px;
+  border-radius: 16px;
   width: 90%;
-  max-width: 1080px;
-  min-height: 500px;
+  max-width: 900px;
+  min-height: 550px;
+  display: flex;
+  flex-direction: row;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
+/* Close button placed on the top left, visible over the dark form background */
 .modal__close-btn {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 24px;
+  left: 24px;
   background: none;
   border: none;
-  font-size: 28px;
-  opacity: 0.8;
+  font-size: 24px;
+  opacity: 0.6;
   cursor: pointer;
-  color: #fff;
-  background: #000;
-  border-radius: 50%;
   z-index: 10;
-  line-height: 1;
+  color: white;
+  transition: opacity 0.2s ease;
 }
 
 .modal__close-btn:hover {
   opacity: 1;
 }
 
-.modal__content {
-  display: flex;
-  height: 100%;
-  min-height: 500px;
-}
-
+/* --------------------------------------------------------------------------
+   Left Side: Form Section (Flex 1)
+   -------------------------------------------------------------------------- */
 .modal__form-section {
   flex: 1;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.modal__artwork-section {
-  flex: 3;
-  display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #121212;
 }
 
-.modal__artwork-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.modal__title {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 24px;
-  color: #ccc;
+.modal__logo {
+  width: 160px;
+  margin-bottom: 32px;
 }
 
 .modal__form {
+  width: 100%;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.modal__input-group {
+/* Hide labels to match the placeholder-only mockup */
+.modal__label, 
+.modal__title {
+  display: none;
+}
+
+/* Standard flex column, no reserved padding or relative positioning needed */
+.modal__input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
-.modal__label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #ccc;
-}
-
+/* Pill-shaped inputs */
 .modal__input {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
   background-color: transparent;
+  border: 1px solid #444;
+  border-radius: 24px; /* Rounded pill look */
+  padding: 14px 20px;
+  color: #fff;
+  font-family: 'Khula', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.modal__input::placeholder {
+  color: #888;
 }
 
 .modal__input:focus {
-  border-color: #ec0057;
+  border-color: #ec0057; /* Brand Pink */
 }
 
 .modal__input_type_error {
-  border-color: #e74c3c;
+  border-color: #ff4d4f;
 }
 
+/* Error text sits natively in the DOM flow. 
+  display: block ensures it breaks onto a new line below the input. 
+*/
 .modal__error {
+  display: block;
+  color: #ff4d4f;
   font-size: 12px;
-  color: #e74c3c;
+  padding-left: 16px;
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
-.modal__password-strength {
-  font-size: 12px;
-  margin-top: 4px;
-  font-weight: 600;
+/* When {errors.field} is empty (""), this hides the span completely 
+  so it doesn't leave a lingering 6px margin-top gap.
+*/
+.modal__error:empty {
+  display: none;
 }
 
-.modal__password-strength_level_weak {
-  color: #e74c3c;
-}
-
-.modal__password-strength_level_medium {
-  color: #f39c12;
-}
-
-.modal__password-strength_level_strong {
-  color: #2ecc71;
-}
-
+/* Pink Submit Button */
 .modal__submit-btn {
-  margin-top: 10px;
-  padding: 12px;
   background-color: #ec0057;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 24px; /* Rounded pill look */
+  padding: 16px;
   font-size: 16px;
+  font-family: 'Khula', sans-serif;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  margin-top: 12px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-.modal__submit-btn:hover {
-  background-color: #2b2b2b;
+.modal__submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
-.modal__toggle-text {
+.modal__submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.modal__submit-btn_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Bottom Text Link */
+.modal__switch-wrapper {
   margin-top: 24px;
-  font-size: 14px;
   text-align: center;
-  color: #ccc;
 }
 
-.modal__toggle-link {
+.modal__switch-text {
+  color: #aaa;
+  font-size: 14px;
+  font-family: 'Khula', sans-serif;
+}
+
+.modal__switch-btn {
+  background: none;
+  border: none;
   color: #ec0057;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  transition: color 0.2s;
 }
 
-.modal__toggle-link:hover {
-  text-decoration: underline;
+.modal__switch-btn:hover {
+  color: #ff3377;
 }
 
+/* --------------------------------------------------------------------------
+   Right Side: Artwork Section (Flex 1.2)
+   -------------------------------------------------------------------------- */
+.modal__artwork-section {
+  flex: 1.2;
+  background-image: url('../../images/sign-in-artwork.png'); /* Exact path relative to Modal.css */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Responsive constraints */
 @media screen and (max-width: 768px) {
   .modal__artwork-section {
-    display: none;
+    display: none; /* Hide artwork on mobile */
+  }
+  .modal__container {
+    flex-direction: column;
+    border-radius: 0;
+    min-height: 100vh;
+    width: 100%;
+  }
+  .modal__form-section {
+    padding: 24px;
   }
 }
