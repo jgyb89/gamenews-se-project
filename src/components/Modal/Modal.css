@@ -72,7 +72,7 @@
 }
 
 /* Hide labels to match the placeholder-only mockup */
-.modal__label, 
+.modal__label,
 .modal__title {
   display: none;
 }
@@ -90,7 +90,7 @@
   border-radius: 24px; /* Rounded pill look */
   padding: 14px 20px;
   color: #fff;
-  font-family: 'Khula', sans-serif;
+  font-family: "Khula", sans-serif;
   font-size: 15px;
   outline: none;
   transition: border-color 0.2s ease;
@@ -135,11 +135,13 @@
   border-radius: 24px; /* Rounded pill look */
   padding: 16px;
   font-size: 16px;
-  font-family: 'Khula', sans-serif;
+  font-family: "Khula", sans-serif;
   font-weight: 600;
   cursor: pointer;
   margin-top: 12px;
-  transition: opacity 0.2s ease, transform 0.1s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
 }
 
 .modal__submit-btn:hover:not(:disabled) {
@@ -164,7 +166,7 @@
 .modal__switch-text {
   color: #aaa;
   font-size: 14px;
-  font-family: 'Khula', sans-serif;
+  font-family: "Khula", sans-serif;
 }
 
 .modal__switch-btn {
@@ -187,7 +189,7 @@
    -------------------------------------------------------------------------- */
 .modal__artwork-section {
   flex: 1.2;
-  background-image: url('../../images/sign-in-artwork.png'); /* Exact path relative to Modal.css */
+  background-image: url("../../images/sign-in-artwork.png"); /* Exact path relative to Modal.css */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -207,4 +209,44 @@
   .modal__form-section {
     padding: 24px;
   }
+}
+
+/* ==========================================================================
+   Light Mode Overrides
+   ========================================================================== */
+
+/* Target both the container and the form section to ensure a seamless #E3E3E3 fill */
+.light-mode .modal__container,
+.light-mode .modal__form-section {
+  background-color: #e3e3e3;
+}
+
+/* Update text and border colors for contrast against light gray */
+.light-mode .modal__input {
+  color: #101010;
+  border-color: #b3b3b3;
+}
+
+.light-mode .modal__input::placeholder {
+  color: #777;
+}
+
+.light-mode .modal__input:focus {
+  border-color: #ec0057; /* Retain the GameNews Brand Pink on focus */
+}
+
+.light-mode .modal__switch-text {
+  color: #555;
+}
+
+/* Safely invert white SVG graphics (Close button & Logo) 
+  so they become dark and fully visible on the #E3E3E3 background 
+*/
+.light-mode .modal__close-btn img,
+.light-mode .modal__logo {
+  filter: invert(1);
+}
+
+.light-mode .modal__error {
+  color: #ff4d4f !important;
 }

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 const RegisterModal = ({ isOpen, onClose, onRegister, onSwitchToLogin }) => {
-  const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
 
   // Reset form fields when the modal opens/closes to prevent stale data
   useEffect(() => {
@@ -27,8 +28,6 @@ const RegisterModal = ({ isOpen, onClose, onRegister, onSwitchToLogin }) => {
       onClose={onClose}
       onSubmit={onSubmit}
     >
-
-
       <div className="modal__input-wrapper">
         <label className="modal__label">Email</label>
         <input
@@ -88,9 +87,9 @@ const RegisterModal = ({ isOpen, onClose, onRegister, onSwitchToLogin }) => {
         <span className="modal__error">{errors.avatar}</span>
       </div>
 
-      <button 
-        type="submit" 
-        className={`modal__submit-btn ${!isValid ? "modal__submit-btn_disabled" : ""}`} 
+      <button
+        type="submit"
+        className={`modal__submit-btn ${!isValid ? "modal__submit-btn_disabled" : ""}`}
         disabled={!isValid}
       >
         Sign Up
@@ -99,7 +98,11 @@ const RegisterModal = ({ isOpen, onClose, onRegister, onSwitchToLogin }) => {
       <div className="modal__switch-wrapper">
         <p className="modal__switch-text">
           Already have an account?{" "}
-          <button type="button" className="modal__switch-btn" onClick={onSwitchToLogin}>
+          <button
+            type="button"
+            className="modal__switch-btn"
+            onClick={onSwitchToLogin}
+          >
             Log in here
           </button>
         </p>

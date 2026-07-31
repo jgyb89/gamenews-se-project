@@ -112,6 +112,19 @@ function App() {
       });
   };
 
+  const handleRegister = (name, avatar, email, password) => {
+    auth.register(name, avatar, email, password)
+      .then(() => {
+        // Upon successful registration, automatically log the user in
+        handleLogin(email, password);
+      })
+      .catch((err) => {
+        console.error("Registration failed:", err);
+        // Optional: In the future, you can set a state here to display 
+        // the error message (like "Email already exists") in the modal UI.
+      });
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -135,7 +148,7 @@ function App() {
           isOpen={activeModal === "register"}
           onClose={handleCloseModal}
           onSwitchToLogin={handleOpenLogin}
-          onRegister={console.log}
+          onRegister={handleRegister}
         />
         <LoginModal
           isOpen={activeModal === "login"}
@@ -153,13 +166,11 @@ function App() {
             <Route
               path="/news"
               element={
-                <ProtectedRoute isLoggedIn={isLoggedIn} handleOpenLoginModal={handleOpenLogin}>
-                  <NewsPage
-                    news={news}
-                    giveaways={giveaways}
-                    apiError={apiError}
-                  />
-                </ProtectedRoute>
+                <NewsPage
+                  news={news}
+                  giveaways={giveaways}
+                  apiError={apiError}
+                />
               }
             />
             <Route
