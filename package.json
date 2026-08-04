@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jgyb89.github.io/gamenews-se-project/",
+  "homepage": "https://gamenews.twilightparadox.com",
   "scripts": {
+    "gcp-build": "",
+    "start": "node -e 'require(\"http\").createServer((req, res) => res.end()).listen(process.env.PORT || 8080)'",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "gsap": "^3.15.0",

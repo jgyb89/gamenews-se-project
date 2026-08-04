@@ -1,13 +1,16 @@
-import React from "react";
 import "./Profile.css";
 
 function Profile({ currentUser, handleLogout }) {
   return (
     <div className="profile">
       <div className="profile__sidebar">
-        <img className="profile__avatar" src={currentUser?.avatar || "https://via.placeholder.com/100"} alt="User Avatar" />
+        <img
+          className="profile__avatar"
+          src={currentUser?.avatar || "https://via.placeholder.com/100"}
+          alt="User Avatar"
+        />
         <p className="profile__name">{currentUser?.name || "User"}</p>
-        
+
         {/* Attach the handleLogout function to the onClick event */}
         <button className="profile__logout-btn" onClick={handleLogout}>
           Log out

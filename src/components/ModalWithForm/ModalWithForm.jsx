@@ -1,17 +1,10 @@
-import React from "react";
-import "../Modal/Modal.css"; 
+import "../Modal/Modal.css";
 import closeIcon from "../../images/close-icon.svg";
 import logo from "../../images/gamenews-logo-white.svg";
 // Import the custom hook
 import { useModalClose } from "../../hooks/useModalClose";
 
-const ModalWithForm = ({
-  name,
-  isOpen,
-  onClose,
-  onSubmit,
-  children,
-}) => {
+const ModalWithForm = ({ name, isOpen, onClose, onSubmit, children }) => {
   // Initialize the hook to handle Escape and Overlay clicks
   useModalClose(isOpen, onClose);
 
@@ -21,7 +14,6 @@ const ModalWithForm = ({
   return (
     <div className={`modal modal_type_${name}`}>
       <div className="modal__container">
-        
         {/* Close Button */}
         <button className="modal__close-btn" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close" />
@@ -30,7 +22,7 @@ const ModalWithForm = ({
         {/* LEFT SIDE: Form Section (flex: 1) */}
         <div className="modal__form-section">
           <img src={logo} alt="GameNews Logo" className="modal__logo" />
-          
+
           <form className="modal__form" name={name} onSubmit={onSubmit}>
             {children}
           </form>
@@ -38,7 +30,6 @@ const ModalWithForm = ({
 
         {/* RIGHT SIDE: Artwork Section (flex: 1.2) */}
         <div className="modal__artwork-section" />
-        
       </div>
     </div>
   );

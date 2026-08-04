@@ -1,5 +1,5 @@
-const BASE_URL = process.env.NODE_ENV === "production" 
-  ? "https://api.yourdomain.com" // Placeholder for future deployment
+const BASE_URL = import.meta.env.PROD
+  ? "https://api.gamenews.twilightparadox.com"
   : "http://localhost:3001";
 
 function checkResponse(res) {
