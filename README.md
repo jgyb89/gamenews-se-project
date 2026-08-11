@@ -56,3 +56,7 @@ To get started with the project locally, we will need to run both the backend AP
 * The React Frontend is built statically using Vite (`npm run build`).
 * Nginx acts as the web server, serving the static frontend files and acting as a reverse proxy to route secure API requests to the Express backend.
 * Certbot provides secure HTTPS encryption for all traffic.
+
+## Project Pitch Video
+ 
+ Check out my video [here](https://drive.google.com/drive/folders/1dLBH1Wdpt82D-R8XsmdcZjc8N2wCajVk?usp=sharing), where I describe my project and some challenges I faced while building it.
