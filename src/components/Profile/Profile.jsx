@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 
-function Profile({ currentUser, handleLogout }) {
+function Profile({ handleLogout }) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div className="profile">
       <div className="profile__sidebar">

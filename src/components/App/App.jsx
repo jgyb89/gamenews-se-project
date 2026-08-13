@@ -177,7 +177,7 @@ function App() {
               path="/profile"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn} handleOpenLoginModal={handleOpenLogin}>
-                  <Profile currentUser={currentUser} handleLogout={handleLogout} />
+                  <Profile handleLogout={handleLogout} />
                 </ProtectedRoute>
               }
             />
