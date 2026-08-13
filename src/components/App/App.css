@@ -1,12 +1,29 @@
 .page {
   display: flex;
   background-color: #101010;
-  min-height: 100vh;
 }
 
 .page__content {
   flex: 1;
-  max-width: 1360px;
+
   padding: 32px 40px 0;
   margin: 0 auto;
+  margin-left: 258px;
+}
+
+@media screen and (max-width: 1288px) {
+  .page__content {
+    margin-left: 113px;
+  }
+}
+
+/* --- MOBILE STYLES --- */
+@media screen and (max-width: 768px) {
+  .page__content {
+    margin-left: 0 !important;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }

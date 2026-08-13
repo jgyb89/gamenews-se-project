@@ -1,3 +1,5 @@
+@import url("./vendor/fonts/fonts.css");
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,8 +13,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -52,13 +54,14 @@
 
 body {
   margin: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 1126px;
+  width: 1600px;
   max-width: 100%;
   margin: 0 auto;
-  text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
@@ -108,4 +111,62 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+.page.light-mode {
+  background-color: #e3e3e3 !important;
+}
+
+/* Font/Header/Icon colors */
+.page.light-mode h1,
+.page.light-mode h2,
+.page.light-mode h3,
+.page.light-mode h4,
+.page.light-mode h5,
+.page.light-mode h6,
+.page.light-mode p,
+.page.light-mode
+  span:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode a:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode div:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *),
+.page.light-mode .modal__title,
+.page.light-mode
+  .material-symbols-outlined:not(.sidebar *):not(.bottom-nav *):not(
+    .header__top-bar *
+  ),
+.page.light-mode
+  label:not(.sidebar *):not(.bottom-nav *):not(.header__top-bar *) {
+  color: #101010 !important;
+}
+
+/* Box elements that need contrast against #E3E3E3 */
+.page.light-mode .card,
+.page.light-mode .news-card,
+.page.light-mode .posts,
+.page.light-mode .right-sidebar,
+.page.light-mode .modal__content,
+.page.light-mode .post-input-wrapper {
+  background-color: #ffffff !important;
+}
+
+/* Form field borders */
+.page.light-mode .modal__input,
+.page.light-mode .post-input-wrapper,
+.page.light-mode .post-input,
+.page.light-mode .search-input {
+  border: 1px solid #101010 !important;
+  background-color: transparent !important;
+  color: #101010 !important;
+}
+
+.page.light-mode .modal__input::placeholder,
+.page.light-mode .post-input::placeholder,
+.page.light-mode .search-input::placeholder {
+  color: #666666 !important;
+}
+
+/* Global Mobile Utility */
+.mobile-only {
+  display: none;
 }

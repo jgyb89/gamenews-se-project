@@ -1,0 +1,25 @@
+.news-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 952px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.news-page__error {
+  background-color: #ffea00;
+  color: #333;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.news-page__divider {
+  border: none;
+  border-bottom: 0.75px solid #a5a5a5;
+  width: 100%;
+  margin: 0;
+}

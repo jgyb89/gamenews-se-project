@@ -1,52 +1,81 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./LoginModal.css";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ isOpen, onClose, onLogin, onSwitchToRegister }) => {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    if (isValid) {
+      onLogin(values.email, values.password);
+    }
   };
 
   return (
     <ModalWithForm
-      title="Sign in"
+      name="login"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
-      <fieldset className="modal__fieldset">
-        <label className="modal__label">
-          Email
-          <input
-            type="email"
-            className="modal__input"
-            name="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label className="modal__label">
-          Password
-          <input
-            type="password"
-            className="modal__input"
-            name="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-      </fieldset>
-      <button type="submit" className="modal__submit-button">
-        Sign in
+
+      
+      <div className="modal__input-wrapper">
+        <label className="modal__label">Email</label>
+        <input
+          type="email"
+          name="email"
+          className={`modal__input ${errors.email ? "modal__input_type_error" : ""}`}
+          placeholder="Enter email"
+          value={values.email || ""}
+          onChange={handleChange}
+          required
+        />
+        <span className="modal__error">{errors.email}</span>
+      </div>
+
+      <div className="modal__input-wrapper">
+        <label className="modal__label">Password</label>
+        <input
+          type="password"
+          name="password"
+          className={`modal__input ${errors.password ? "modal__input_type_error" : ""}`}
+          placeholder="Enter password"
+          value={values.password || ""}
+          onChange={handleChange}
+          required
+        />
+        <span className="modal__error">{errors.password}</span>
+      </div>
+
+      <button 
+        type="submit" 
+        className={`modal__submit-btn ${!isValid ? "modal__submit-btn_disabled" : ""}`} 
+        disabled={!isValid}
+      >
+        Log In
       </button>
+
+      <div className="modal__switch-wrapper">
+        <p className="modal__switch-text">
+          Don't have an account?{" "}
+          <button
+            type="button"
+            className="modal__switch-btn"
+            onClick={onSwitchToRegister}
+          >
+            Sign up here
+          </button>
+        </p>
+      </div>
     </ModalWithForm>
   );
 };

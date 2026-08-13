@@ -2,21 +2,32 @@ import { useEffect } from "react";
 
 export function useModalClose(isOpen, onClose) {
   useEffect(() => {
+    // If the modal isn't open, don't attach the listeners
     if (!isOpen) return;
 
-    // basic close modal pressing escape key
+    // Handler for the Escape key
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         onClose();
       }
     };
 
-    // Add event listener
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      // Remove event listener
-      document.removeEventListener("keydown", handleEscape);
+    // Handler for clicking the background overlay
+    const handleOverlayClick = (e) => {
+      // Ensure we are clicking the dark overlay (.modal) and not the white form container inside it
+      if (e.target.classList.contains("modal")) {
+        onClose();
+      }
     };
-  }, [isOpen, onClose]); // Dependency array telling React when to re-run the effect
+
+    // Attach listeners to the document
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", handleOverlayClick);
+
+    // Cleanup function to remove listeners when the modal closes or component unmounts
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", handleOverlayClick);
+    };
+  }, [isOpen, onClose]);
 }

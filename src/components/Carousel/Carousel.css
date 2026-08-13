@@ -1,0 +1,119 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel__title {
+  font-size: 24px;
+  margin: 0;
+  color: #fff;
+}
+
+.carousel__controls {
+  display: flex;
+  gap: 12px;
+}
+
+.carousel__button {
+  background-color: #1a1a1a;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.carousel__button:hover {
+  background-color: #ec0057;
+}
+
+.carousel__button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.carousel__button:disabled:hover {
+  background-color: #1a1a1a;
+}
+
+.carousel__window {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carousel__item {
+  flex: 0 0 calc(100% / 3);
+  min-width: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-right: 0.75px solid #a5a5a5;
+}
+
+.carousel__item:last-child {
+  border-right: none;
+}
+
+/* Ensure any image inside the carousel item is strictly responsive */
+.carousel__item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Tablet: Show 2 items in the carousel */
+@media screen and (max-width: 1288px) {
+  .carousel__item {
+    flex: 0 0 calc(100% / 2);
+  }
+}
+
+/* Mobile: Stack all items vertically */
+@media screen and (max-width: 1080px) {
+  .carousel__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .carousel__window {
+    overflow: visible;
+  }
+
+  .carousel__track {
+    flex-direction: column;
+    gap: 32px;
+    transform: none !important;
+  }
+
+  .carousel__item {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0;
+    border-right: none;
+  }
+}
